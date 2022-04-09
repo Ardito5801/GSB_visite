@@ -11,66 +11,62 @@ namespace GSBFrais.Model.Data
 {
     public class DaoLigneFraisForfait
     {
-        private Dbal _dbal;
+        private Dbal unDbal;
         private DaoVisiteur _daoVisiteur;
-        private DaoLigneFraisForfait _daoFraisForfait;
+        private DaoFraisForfait _daoFraisForFait;
 
-        public DaoLigneFraisForfait (Dbal unDbal, DaoVisiteur uneDaoVisiteur, DaoLigneFraisForfait uneDaoLigneFraisForfait)
+        public DaoLigneFraisForfait(Dbal myDbal, DaoVisiteur unDaoVisiteurs, DaoFraisForfait unDaoFraisForfait)
         {
-            this._dbal = unDbal;
-            this._daoVisiteur = uneDaoVisiteur;
-            this._daoFraisForfait = uneDaoLigneFraisForfait;
-        }
-
-        public DaoLigneFraisForfait(Dbal unDbal)
-        {
-            this._dbal = unDbal;
+            this.unDbal = myDbal;
+            this._daoVisiteur = unDaoVisiteurs;
+            this._daoFraisForFait = unDaoFraisForfait;
         }
 
         public void Insert(LigneFraisForfait uneLigneFraisForfait)
         {
-            string query = " ligneFraisForfait (idVisiteur, mois, idFraitForfait, quantite) VALUES ('" + uneLigneFraisForfait.IdVisiteur + "','" + uneLigneFraisForfait.Mois + "','" + uneLigneFraisForfait.IdFraisForfait + "','" + uneLigneFraisForfait.Quantite + "')";
-            this._dbal.Insert(query);
+            string query = " ligneFraisForfait (idVisiteur, mois, idFraitForfait, quantite) VALUES ('" + uneLigneFraisForfait.Fichefrais + "','" + uneLigneFraisForfait.Fichefrais + "','" + uneLigneFraisForfait.Fraisforfait + "','" + uneLigneFraisForfait.Quantite + "')";
+            this.unDbal.Insert(query);
         }
 
         public void Update(LigneFraisForfait uneLigneFraisForfait)
         {
-            string query = " ligneFraisForfait (idVisiteur, mois, idFraitForfait, quantite) SET '" + uneLigneFraisForfait.IdVisiteur + "','" + uneLigneFraisForfait.Mois + "','" + uneLigneFraisForfait.IdFraisForfait + "','" + uneLigneFraisForfait.Quantite + "'";
-            this._dbal.Update(query);
+            string query = " ligneFraisForfait SET idVisiteur = '" + uneLigneFraisForfait.Fichefrais.UnVisiteur.Id + "', mois = '" + uneLigneFraisForfait.Fichefrais.Mois + "', idFraisForfait = '" + uneLigneFraisForfait.Fraisforfait.Id + "', quantite = '" + uneLigneFraisForfait.Quantite + "' WHERE idVisiteur = '" + uneLigneFraisForfait.Fichefrais.UnVisiteur.Id + "' AND mois = '" + uneLigneFraisForfait.Fichefrais.Mois + "' AND idFraisForfait = '" + uneLigneFraisForfait.Fraisforfait.Id + "'";
+            this.unDbal.Update(query);
         }
 
         public void Delete(LigneFraisForfait uneLigneFraisForfait)
         {
-            string query = " visiteur WHERE idVisiteur ='" + uneLigneFraisForfait.IdVisiteur + "'AND idFraitForfait ='" + uneLigneFraisForfait.IdFraisForfait + "'";
-            this._dbal.Delete(query);
+            string query = " visiteur WHERE idVisiteur ='" + uneLigneFraisForfait.Fichefrais + "'AND idFraitForfait ='" + uneLigneFraisForfait.Fraisforfait + "'";
+            this.unDbal.Delete(query);
         }
 
         public List<LigneFraisForfait> SelectAll()
         {
             List<LigneFraisForfait> listLigneFraisForfait = new List<LigneFraisForfait>();
-            DataTable myTable = this._dbal.SelectAll("ligneFraisForfait");
+            DataTable myTable = this.unDbal.SelectAll("ligneFraisForfait");
+
 
             foreach (DataRow r in myTable.Rows)
             {
-                listLigneFraisForfait.Add(new LigneFraisForfait((string)r["idVisiteur"], (DateTime)r["mois"], (string)r["idFraisForfait"], (decimal)r["quantite"]));
+                Visiteur leVisiteur = _daoVisiteur.SelectById((string)r["idVisiteur"]);
+                listLigneFraisForfait.Add(new LigneFraisForfait((int)r["quantite"], (FraisForfait)r["unFraisForfait"], (FicheFrais)r["uneFichefrais"]));
             }
             return listLigneFraisForfait;
         }
 
-        public LigneFraisForfait SelectById(string idFraisForfait)
-        {
-            DataRow result = this._dbal.SelectById("ligneFraisForfait", "idFraisForfait = " + idFraisForfait);
-            return new LigneFraisForfait((string)result["idVisiteur"], (DateTime)result["mois"], (string)result["idFraisForfait"], (decimal)result["quantite"]);
-        }
+
 
         public List<LigneFraisForfait> SelectByFicheFrais(FicheFrais uneFicheFrais)
         {
             List<LigneFraisForfait> listLigneFraisForfait = new List<LigneFraisForfait>();
-            DataTable myTable = this._dbal.SelectByComposedFK2("ligneFraisForfait", "idVisiteur", uneFicheFrais.UnVisiteur.Id,"mois",uneFicheFrais.Mois);
+            DataTable myTable = this.unDbal.SelectByComposedFK2("lignefraisforfait", "idVisiteur", uneFicheFrais.UnVisiteur.Id, "mois", uneFicheFrais.Mois);
+
 
             foreach (DataRow r in myTable.Rows)
             {
-                listLigneFraisForfait.Add(new LigneFraisForfait((string)r["idVisiteur"], (DateTime)r["mois"], (string)r["idFraisForfait"], (decimal)r["quantite"]));
+                Visiteur leVisiteur = _daoVisiteur.SelectById((string)r["idVisiteur"]);
+                FraisForfait leFraisForfait = this._daoFraisForFait.SelectById((string)r["idFraisForfait"]);
+                listLigneFraisForfait.Add(new LigneFraisForfait((int)r["quantite"], leFraisForfait, uneFicheFrais));
             }
             return listLigneFraisForfait;
 

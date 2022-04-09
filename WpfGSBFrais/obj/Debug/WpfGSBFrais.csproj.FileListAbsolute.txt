@@ -1,0 +1,41 @@
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\obj\Debug\WpfGSBFrais.csprojAssemblyReference.cache
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\obj\Debug\WpfGSBFrais.exe.config
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\obj\Debug\MainWindow.g.cs
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\obj\Debug\App.g.cs
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\obj\Debug\WpfGSBFrais_MarkupCompile.cache
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\obj\Debug\WpfGSBFrais_MarkupCompile.lref
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\bin\Debug\WpfGSBFrais.exe.config
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\bin\Debug\WpfGSBFrais.exe
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\bin\Debug\WpfGSBFrais.pdb
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\bin\Debug\GSB Console.exe
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\bin\Debug\GSBFrais.Model.dll
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\bin\Debug\MySql.Data.dll
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\bin\Debug\Google.Protobuf.dll
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\bin\Debug\ZstdNet.dll
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\bin\Debug\System.Memory.dll
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\bin\Debug\System.Buffers.dll
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\bin\Debug\GSB Console.pdb
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\bin\Debug\GSB Console.exe.config
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\bin\Debug\GSBFrais.Model.pdb
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\bin\Debug\GSBFrais.Model.dll.config
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\bin\Debug\MySql.Data.xml
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\bin\Debug\Google.Protobuf.pdb
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\bin\Debug\Google.Protobuf.xml
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\bin\Debug\System.Memory.xml
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\bin\Debug\System.Buffers.xml
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\bin\Debug\K4os.Compression.LZ4.xml
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\bin\Debug\K4os.Hash.xxHash.xml
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\obj\Debug\MainWindow.baml
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\obj\Debug\WpfGSBFrais.g.resources
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\obj\Debug\WpfGSBFrais.Properties.Resources.resources
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\obj\Debug\WpfGSBFrais.csproj.GenerateResource.cache
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\obj\Debug\WpfGSBFrais.csproj.CoreCompileInputs.cache
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\obj\Debug\WpfGSBFrais.csproj.CopyComplete
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\obj\Debug\WpfGSBFrais.exe
+C:\Users\mataj\source\repos\GSB\WpfGSBFrais\obj\Debug\WpfGSBFrais.pdb

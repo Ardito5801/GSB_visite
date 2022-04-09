@@ -8,65 +8,56 @@ namespace GSBFrais.Model.Business
 {
     public class LigneFraisForfait
     {
-        private Visiteur idVisiteur;
-        private DateTime mois;
-        private string idFraisForfait;
-        private decimal quantite;
 
-        public LigneFraisForfait (string unIdVisiteur, DateTime unMois, string unIdFraisForfait, decimal uneQuantite)
+        private int quantite;
+        private FraisForfait fraisforfait;
+        private FicheFrais fichefrais;
+
+        public LigneFraisForfait(int uneQuantite, FraisForfait unFraisForfait, FicheFrais uneFichefrais)
         {
-            this.mois = unMois;
-            this.idFraisForfait = unIdFraisForfait;
             this.quantite = uneQuantite;
+            this.Fraisforfait = unFraisForfait;
+            this.Fichefrais = uneFichefrais;
         }
-
-        public Visiteur IdVisiteur
-        {
-            get
-            {
-                return idVisiteur;
-            }
-            set
-            {
-                idVisiteur = value;
-            }
-        }
-
-        public DateTime Mois
-        {
-            get
-            {
-                return mois;
-            }
-            set
-            {
-                mois = value;
-            }
-        }
-
-        public string IdFraisForfait
-        {
-            get
-            {
-                return idFraisForfait;
-            }
-            set
-            {
-                idFraisForfait = value;
-            }
-        }
-
-        public decimal Quantite
+        public int Quantite
         {
             get
             {
                 return quantite;
             }
+
             set
             {
                 quantite = value;
             }
         }
-        
+
+
+
+        public FraisForfait Fraisforfait
+        {
+            get
+            {
+                return fraisforfait;
+            }
+
+            set
+            {
+                fraisforfait = value;
+            }
+        }
+
+        public FicheFrais Fichefrais
+        {
+            get
+            {
+                return fichefrais;
+            }
+
+            set
+            {
+                fichefrais = value;
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GSBFrais.Model.Business;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,103 +9,47 @@ namespace GSBFrais.Model.Business
 {
     public class FicheFrais
     {
-        private Visiteur unVisiteur;
-        private string mois;
-        private Etat unEtat;
-        private decimal montantValide;
-        private int nbJustificatifs;
-        private DateTime dateModif;
 
-        public FicheFrais (Visiteur leVisiteur, string unMois, Etat unEtat, decimal unMontantValide, int unNbJustificatifs,DateTime uneDateModif)
+
+
+        public FicheFrais(string unMois, int unNbJustificatifs, decimal unMontantValide, DateTime uneDateModif, Etat leEtat, Visiteur Visiteur, FicheFrais FicheFrais)
         {
-            this.unVisiteur = leVisiteur;
-            this.mois = unMois;
-            this.unEtat = unEtat;
-            this.montantValide = unMontantValide;
-            this.nbJustificatifs = unNbJustificatifs;
-            this.dateModif = uneDateModif;
+
+            this.Mois = unMois;
+            this.NbJustificatifs = unNbJustificatifs;
+            this.MontantValide = unMontantValide;
+            this.DateModif = uneDateModif;
+            this.UnEtat = leEtat;
+            this.UnVisiteur = Visiteur;
+        }
+        public FicheFrais(string unMois, int unNbJustificatifs, decimal unMontantValide, DateTime uneDateModif, Etat leEtat, Visiteur Visiteur)
+        {
+
+            this.Mois = unMois;
+            this.NbJustificatifs = unNbJustificatifs;
+            this.MontantValide = unMontantValide;
+            this.DateModif = uneDateModif;
+            this.UnEtat = leEtat;
+            this.UnVisiteur = Visiteur;
         }
 
-        public Visiteur UnVisiteur
-        {
-            get
-            {
-                return unVisiteur;
-            }
 
-            set
-            {
-                unVisiteur = value;
-            }
-        }
+        public Etat UnEtat { get; set; }
+        public decimal MontantValide { get; set; }
+        public int NbJustificatifs { get; set; }
+        public DateTime DateModif { get; set; }
 
-        public string Mois
-        {
-            get
-            {
-                return mois;
-            }
 
-            set
-            {
-                mois = value;
-            }
-        }
+        public List<LigneFraisForfait> LesLignesFraisForfait { get; set; }
+        public List<LigneFraisHorsForfait> LesLigneFraisHorsForfait { get; set; }
 
-        internal Etat UnEtat
-        {
-            get
-            {
-                return unEtat;
-            }
+        public Visiteur UnVisiteur { get; set; }
 
-            set
-            {
-                unEtat = value;
-            }
-        }
+        public string Mois { get; set; }
 
-        public decimal MontantValide
-        {
-            get
-            {
-                return montantValide;
-            }
-
-            set
-            {
-                montantValide = value;
-            }
-        }
-
-        public int NbJustificatifs
-        {
-            get
-            {
-                return nbJustificatifs;
-            }
-
-            set
-            {
-                nbJustificatifs = value;
-            }
-        }
-
-        public DateTime DateModif
-        {
-            get
-            {
-                return dateModif;
-            }
-
-            set
-            {
-                dateModif = value;
-            }
-        }
         public override string ToString()
         {
-            return unVisiteur.Id + "--" + mois + "--" + unVisiteur.Nom;
+            return UnVisiteur.Nom + " - " + UnVisiteur.Prenom + " - " + Mois;
         }
     }
 }

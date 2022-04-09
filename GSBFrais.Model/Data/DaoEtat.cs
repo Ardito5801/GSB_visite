@@ -1,26 +1,40 @@
-﻿using GSBFrais.Model.Business;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using GSBFrais.Model.Business;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace GSBFrais.Model
+namespace GSBFrais.Model.Data
 {
     public class DaoEtat
     {
-        private Dbal _dbal;
+        private Dbal unDbal;
 
-        public DaoEtat(Dbal leDbal)
+        public DaoEtat(Dbal myDbal)
         {
-            this._dbal = leDbal;
+            this.unDbal = myDbal;
         }
-        
+
+        public void Insert(Etat unEtat)
+        {
+            string query = " Etat (id, libelle) VALUES ('" + unEtat.Id + "',' " + unEtat.Libelle.Replace("'", "''") + "')";
+            this.unDbal.Insert(query);
+        }
+
+        public void Update(Etat unEtat)
+        {
+            string query = " Etat (id, libelle) SET '" + unEtat.Libelle.Replace("'", "''") + "'";
+            this.unDbal.Update(query);
+        }
+
+        public void Delete(Etat unEtat)
+        {
+            string query = " visiteur WHERE id ='" + unEtat.Id + "'";
+            this.unDbal.Delete(query);
+        }
+
         public List<Etat> SelectAll()
         {
             List<Etat> listEtat = new List<Etat>();
-            DataTable myTable = this._dbal.SelectAll("Etat");
+            DataTable myTable = this.unDbal.SelectAll("Etat");
 
             foreach (DataRow r in myTable.Rows)
             {
@@ -29,9 +43,17 @@ namespace GSBFrais.Model
             return listEtat;
         }
 
-        public Etat SelectById(string unId)
+        public Etat SelectByName(string nameEtat)
         {
-            DataRow result = this._dbal.SelectById("Etat", unId);
+            DataTable result = new DataTable();
+            result = this.unDbal.SelectByField("Etat", "libelle = '" + nameEtat.Replace("'", "''") + "'");
+            Etat foundEtat = new Etat((string)result.Rows[0]["id"], (string)result.Rows[0]["libelle"]);
+            return foundEtat;
+        }
+
+        public Etat SelectById(string idEtat)
+        {
+            DataRow result = this.unDbal.SelectById("Etat", idEtat);
             return new Etat((string)result["id"], (string)result["libelle"]);
         }
     }

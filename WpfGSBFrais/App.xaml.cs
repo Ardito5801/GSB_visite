@@ -1,5 +1,5 @@
-﻿using GSBFrais.Model;
-using GSBFrais.Model.Data;
+﻿using GSBFrais.Model.Data;
+using GSBFrais.Model.Data.GSBFrais.Model.Data;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -15,26 +15,32 @@ namespace WpfGSBFrais
     /// </summary>
     public partial class App : Application
     {
-        private Dbal theDbal;
-        private DaoEtat theDaoEtat;
-        private DaoFicheFrais theDaoFicheFrais;
-        private DaoLigneFraisForfait theDaoLigneFraisForfait;
-        private DaoLigneFraisHorsForfait theDaoLigneFraisHorsForfait;
-        private DaoVisiteur theDaoVisiteur;
-        private DaoFraisForfait theDaoFraisForfait;
+        private Dbal thedbal;
+        private DaoEtat thedaoetat;
+        private DaoFicheFrais thedaofichefrais;
+        private DaoLigneFraisForfait thedaolignefraisforfait;
+        private DaoLigneFraisHorsForfait thedaolignefraishorsforfait;
+        private DaoVisiteur thedaovisiteurs;
+        private DaoFraisForfait thedaofraisforfait;
 
-        public void Application_Startup(object sender, StartupEventArgs e)
+
+        private void Application_Startup(object sender, StartupEventArgs e)
         {
-            theDbal = new Dbal("gsb_frais");
-            theDaoEtat = new DaoEtat(theDbal);
-            theDaoVisiteur = new DaoVisiteur(theDbal);
-            theDaoFraisForfait = new DaoFraisForfait(theDbal);
-            theDaoLigneFraisForfait = new DaoLigneFraisForfait(theDbal, theDaoVisiteur, theDaoLigneFraisForfait);
-            theDaoLigneFraisHorsForfait = new DaoLigneFraisHorsForfait(theDbal, theDaoFraisForfait, theDaoVisiteur, theDaoFraisForfait);
-            theDaoFicheFrais = new DaoFicheFrais(theDbal, theDaoVisiteur, theDaoEtat);
+            thedbal = new Dbal("gsb_frais");
+            thedaoetat = new DaoEtat(thedbal);
+            thedaovisiteurs = new DaoVisiteur(thedbal);
+            thedaofraisforfait = new DaoFraisForfait(thedbal);
+            thedaolignefraisforfait = new DaoLigneFraisForfait(thedbal, thedaovisiteurs, thedaofraisforfait);
+            thedaolignefraishorsforfait = new DaoLigneFraisHorsForfait(thedbal, thedaofraisforfait, thedaovisiteurs, thedaofichefrais);
+            thedaofichefrais = new DaoFicheFrais(thedbal, thedaovisiteurs, thedaoetat, thedaolignefraisforfait, thedaolignefraishorsforfait);
 
-            MainWindow wnd = new MainWindow(theDaoFicheFrais);
+            // Create the startup window
+            MainWindow wnd = new MainWindow(thedaofichefrais, thedaolignefraisforfait, thedaolignefraishorsforfait, thedaoetat);
+            //MainWindow wnd = new MainWindow(thedaopays, thedaofromage);
             wnd.Show();
+
         }
     }
+
+
 }

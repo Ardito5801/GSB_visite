@@ -17,6 +17,7 @@ using GSBFrais.Model.Business;
 using GSBFrais.Model.Data;
 using GSB_Console;
 using WpfGSBFrais;
+using GSBFrais.Model.Data.GSBFrais.Model.Data;
 
 namespace WpfGSBFrais
 {
@@ -25,12 +26,10 @@ namespace WpfGSBFrais
     /// </summary>
     public partial class MainWindow : Window
     {
-        private DaoFicheFrais theDaoFicheFrais;
-        public MainWindow(DaoFicheFrais uneDaoFicheFrais)
+        public MainWindow(DaoFicheFrais thedaofichefrais, DaoLigneFraisForfait thedaolignefraisforfait, DaoLigneFraisHorsForfait thedaolignefraishorsforfait, DaoEtat theDaoEtat)
         {
-            theDaoFicheFrais = uneDaoFicheFrais;
             InitializeComponent();
-            MainGrid.DataContext = new ViewModel.ViewModelMainWindow(theDaoFicheFrais);
+            Maingrid.DataContext = new viewModel.ViewModelMainWindow(thedaofichefrais, thedaolignefraisforfait, thedaolignefraishorsforfait, theDaoEtat);
             
         }
     }

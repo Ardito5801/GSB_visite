@@ -8,42 +8,41 @@ namespace GSBFrais.Model.Business
 {
     public class Visiteur
     {
-        //c'est un attribut)
-        private string _id;
-        private string _prenom;
-        private string _nom;
-        private string _login;
-        private string _mdp;
-        private string _adresse;
-        private string _cp;
-        private string _ville;
-        private DateTime _dateEmbauche;
+        //c'est un attribut
+        private string id;
+        private string nom;
+        private string prenom;
+        private string login;
+        private string mdp;
+        private string adresse;
+        private string cp;
+        private string ville;
+        private DateTime dateEmbauche;
 
-        public Visiteur(string unId, string unPrenom, string unNom, string unLogin, string unMdp, string uneAdresse, string unCp, string uneVille, DateTime uneDateEmbauche)
+        public Visiteur(string unId, string unNom, string unPrenom, string unLogin, string unMdp, string uneAdresse, string unCp, string uneVille, DateTime uneDateEmbauche)
         {
-            this._id = unId;
-            this._prenom = unPrenom;
-            this._nom = unNom;
-            this._login = unLogin;
-            this._mdp = unMdp;
-            this._adresse = uneAdresse;
-            this._cp = unCp;
-            this._ville = uneVille;
-            this._dateEmbauche = uneDateEmbauche;
+            this.id = unId;
+            this.nom = unNom;
+            this.prenom = unPrenom;
+            this.login = unLogin;
+            this.mdp = unMdp;
+            this.adresse = uneAdresse;
+            this.cp = unCp;
+            this.ville = uneVille;
+            this.dateEmbauche = uneDateEmbauche;
         }
 
-        //Propriétés
-
+        //propriétés
         public string Id
         {
             get
             {
-                return _id;
+                return id;
             }
 
             set
             {
-                _id = value;
+                id = value;
             }
         }
 
@@ -51,12 +50,12 @@ namespace GSBFrais.Model.Business
         {
             get
             {
-                return _nom;
+                return nom;
             }
 
             set
             {
-                _nom = value;
+                nom = value;
             }
         }
 
@@ -64,12 +63,12 @@ namespace GSBFrais.Model.Business
         {
             get
             {
-                return _prenom;
+                return prenom;
             }
 
             set
             {
-                _prenom = value;
+                prenom = value;
             }
         }
 
@@ -77,12 +76,12 @@ namespace GSBFrais.Model.Business
         {
             get
             {
-                return _login;
+                return login;
             }
 
             set
             {
-                _login = value;
+                login = value;
             }
         }
 
@@ -90,12 +89,12 @@ namespace GSBFrais.Model.Business
         {
             get
             {
-                return _mdp;
+                return mdp;
             }
 
             set
             {
-                _mdp = value;
+                mdp = value;
             }
         }
 
@@ -103,12 +102,12 @@ namespace GSBFrais.Model.Business
         {
             get
             {
-                return _adresse;
+                return adresse;
             }
 
             set
             {
-                _adresse = value;
+                adresse = value;
             }
         }
 
@@ -116,12 +115,12 @@ namespace GSBFrais.Model.Business
         {
             get
             {
-                return _cp;
+                return cp;
             }
 
             set
             {
-                _cp = value;
+                cp = value;
             }
         }
 
@@ -129,12 +128,12 @@ namespace GSBFrais.Model.Business
         {
             get
             {
-                return _ville;
+                return ville;
             }
 
             set
             {
-                _ville = value;
+                ville = value;
             }
         }
 
@@ -142,12 +141,12 @@ namespace GSBFrais.Model.Business
         {
             get
             {
-                return _dateEmbauche;
+                return dateEmbauche;
             }
 
             set
             {
-                _dateEmbauche = value;
+                dateEmbauche = value;
             }
         }
     }

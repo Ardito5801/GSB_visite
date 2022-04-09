@@ -1,5 +1,6 @@
 ﻿using GSBFrais.Model.Business;
 using GSBFrais.Model.Data;
+using GSBFrais.Model.Data.GSBFrais.Model.Data;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,33 +13,33 @@ namespace GSBFrais.Model.Data
     public class DaoLigneFraisHorsForfait
     {
         private Dbal unDbal;
-        private DaoFraisForfait theDaoFraisForfait1;
-        private DaoVisiteur theDaoVisiteur;
-        private DaoFraisForfait theDaoFraisForfait2;
+        private DaoFraisForfait _daoFraisForfait;
+        private DaoVisiteur _daoVisiteur;
+        private DaoFicheFrais _daoFicheFrais;
 
-        public DaoLigneFraisHorsForfait(Dbal unDbal, DaoFraisForfait uneDaoFraisForfait, DaoVisiteur uneDaoVisiteur, DaoFraisForfait uneDaoFraisForfait2)
+        public DaoLigneFraisHorsForfait(Dbal myDbal, DaoFraisForfait unDaoFraisForfait, DaoVisiteur unDaoVisiteur, DaoFicheFrais unDaoFicheFrais)
         {
-            this.unDbal = unDbal;
-            this.theDaoFraisForfait1 = uneDaoFraisForfait;
-            this.theDaoVisiteur = uneDaoVisiteur;
-            this.theDaoFraisForfait2 = uneDaoFraisForfait2;
+            this.unDbal = myDbal;
+            this._daoFraisForfait = unDaoFraisForfait;
+            this._daoVisiteur = unDaoVisiteur;
+            this._daoFicheFrais = unDaoFicheFrais;
         }
 
         public void Insert(LigneFraisHorsForfait LigneFraisHorsForfait)
         {
-            string query = " ligneFraisForfait (idVisiteur, mois, idFraitForfait, quantite) VALUES ('" + LigneFraisHorsForfait.Id + "',' " + LigneFraisHorsForfait.IdVisiteur + "','" + LigneFraisHorsForfait.Mois + "','" + LigneFraisHorsForfait.Libelle + "','" + LigneFraisHorsForfait.Date + "','" + LigneFraisHorsForfait.Montant + "')";
+            string query = " ligneFraisForfait (idVisiteur, mois, idFraitForfait, quantite) VALUES ('" + LigneFraisHorsForfait.Id + "',' " + LigneFraisHorsForfait.Fichefrais + "','" + LigneFraisHorsForfait.Fichefrais + "','" + LigneFraisHorsForfait.Libelle + "','" + LigneFraisHorsForfait.Date + "','" + LigneFraisHorsForfait.Montant + "')";
             this.unDbal.Insert(query);
         }
 
         public void Update(LigneFraisHorsForfait LigneFraisHorsForfait)
         {
-            string query = " ligneFraisForfait (idVisiteur, mois, idFraitForfait, quantite) SET '" + LigneFraisHorsForfait.Mois + "','" + LigneFraisHorsForfait.Libelle + "','" + LigneFraisHorsForfait.Date + "','" + LigneFraisHorsForfait.Montant + "'";
+            string query = " ligneFraisForfait (idVisiteur, mois, idFraitForfait, quantite) SET '" + LigneFraisHorsForfait.Fichefrais + "','" + LigneFraisHorsForfait.Libelle + "','" + LigneFraisHorsForfait.Date + "','" + LigneFraisHorsForfait.Montant + "'";
             this.unDbal.Update(query);
         }
 
         public void Delete(LigneFraisHorsForfait LigneFraisHorsForfait)
         {
-            string query = " visiteur WHERE idVisiteur ='" + LigneFraisHorsForfait.IdVisiteur + "'AND id ='" + LigneFraisHorsForfait.Id + "'";
+            string query = " ligneFraisHorsForfait  WHERE idVisiteur = '" + LigneFraisHorsForfait.Fichefrais.UnVisiteur.Id + "' AND id ='" + LigneFraisHorsForfait.Id + "'";
             this.unDbal.Delete(query);
         }
 
@@ -47,17 +48,31 @@ namespace GSBFrais.Model.Data
             List<LigneFraisHorsForfait> listLigneFraisForfait = new List<LigneFraisHorsForfait>();
             DataTable myTable = this.unDbal.SelectAll("ligneFraisHorsForfait");
 
+
             foreach (DataRow r in myTable.Rows)
             {
-                listLigneFraisForfait.Add(new LigneFraisHorsForfait((int)r["id"], (string)r["idVisiteur"], (DateTime)r["mois"], (string)r["libelle"], (DateTime)r["date"], (decimal)r["montant"]));
+                Visiteur leVisiteur = _daoVisiteur.SelectById((string)r["idVisiteur"]);
+                listLigneFraisForfait.Add(new LigneFraisHorsForfait((int)r["id"], (string)r["libelle"], (DateTime)r["date"], (decimal)r["montant"]));
             }
             return listLigneFraisForfait;
         }
 
-        public LigneFraisHorsForfait SelectById(string idFraisHorsForfait)
+
+
+        public List<LigneFraisHorsForfait> SelectByFicheFrais(FicheFrais uneFicheFrais)
         {
-            DataRow result = this.unDbal.SelectById("ligneFraisHorsForfait", "id = " + idFraisHorsForfait);
-            return new LigneFraisHorsForfait((int)result["id"], (string)result["idVisiteur"], (DateTime)result["mois"], (string)result["libelle"], (DateTime)result["date"], (decimal)result["montant"]);
+            List<LigneFraisHorsForfait> listLigneFraisHorsForfait = new List<LigneFraisHorsForfait>();
+            DataTable myTable = this.unDbal.SelectByComposedFK2("lignefraishorsforfait", "idVisiteur", uneFicheFrais.UnVisiteur.Id, "mois", uneFicheFrais.Mois);
+
+
+
+            foreach (DataRow r in myTable.Rows)
+            {
+                Visiteur leVisiteur = _daoVisiteur.SelectById((string)r["idVisiteur"]);
+                listLigneFraisHorsForfait.Add(new LigneFraisHorsForfait(uneFicheFrais, (int)r["id"], (string)r["libelle"], (DateTime)r["date"], (decimal)r["montant"]));
+            }
+            return listLigneFraisHorsForfait;
         }
     }
 }
+

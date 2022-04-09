@@ -50,7 +50,7 @@ namespace GSBFrais.Model.Data
 
         public FraisForfait SelectById(string idFraisForfait)
         {
-            DataRow result = this.unDbal.SelectById("fraisforfait", "id = " + idFraisForfait);
+            DataRow result = this.unDbal.SelectById("fraisforfait", idFraisForfait);
             return new FraisForfait((string)result["id"], (string)result["libelle"], (decimal)result["montant"]);
         }
     }

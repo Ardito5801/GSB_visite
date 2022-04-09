@@ -9,19 +9,27 @@ namespace GSBFrais.Model.Business
     public class LigneFraisHorsForfait
     {
         private int id;
-        private Visiteur idVisiteur;
-        private DateTime mois;
         private string libelle;
         private DateTime date;
         private decimal montant;
+        private FicheFrais fichefrais;
 
-        public LigneFraisHorsForfait(int unId, string unIdVisiteur, DateTime unMois, string unLibelle, DateTime uneDate, decimal unMontant)
+        public LigneFraisHorsForfait(int unId, string unLibelle, DateTime uneDate, decimal unMontant)
         {
-            this.id = unId;
-            this.mois = unMois;
-            this.libelle = unLibelle;
-            this.date = uneDate;
-            this.montant = unMontant;
+            this.Id = unId;
+            this.Libelle = unLibelle;
+            this.Date = uneDate;
+            this.Montant = unMontant;
+        }
+        public LigneFraisHorsForfait(FicheFrais uneFicheFrais, int unId, string unLibelle, DateTime uneDate, decimal unMontant)
+        {
+
+            this.fichefrais = uneFicheFrais;
+            this.Id = unId;
+            this.Libelle = unLibelle;
+            this.Date = uneDate;
+            this.Montant = unMontant;
+
         }
 
         public int Id
@@ -30,35 +38,16 @@ namespace GSBFrais.Model.Business
             {
                 return id;
             }
+
             set
             {
                 id = value;
             }
         }
 
-        public Visiteur IdVisiteur
-        {
-            get
-            {
-                return idVisiteur;
-            }
-            set
-            {
-                idVisiteur = value;
-            }
-        }
 
-        public DateTime Mois
-        {
-            get
-            {
-                return mois;
-            }
-            set
-            {
-                mois = value;
-            }
-        }
+
+
 
         public string Libelle
         {
@@ -66,6 +55,7 @@ namespace GSBFrais.Model.Business
             {
                 return libelle;
             }
+
             set
             {
                 libelle = value;
@@ -78,6 +68,7 @@ namespace GSBFrais.Model.Business
             {
                 return date;
             }
+
             set
             {
                 date = value;
@@ -90,11 +81,24 @@ namespace GSBFrais.Model.Business
             {
                 return montant;
             }
+
             set
             {
                 montant = value;
             }
         }
 
+        public FicheFrais Fichefrais
+        {
+            get
+            {
+                return fichefrais;
+            }
+
+            set
+            {
+                fichefrais = value;
+            }
+        }
     }
 }
